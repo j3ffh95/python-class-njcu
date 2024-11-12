@@ -1,0 +1,1 @@
+print(f"heloo {49 + 10}")

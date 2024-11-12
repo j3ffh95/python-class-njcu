@@ -1,0 +1,15 @@
+#Second Class - Project #1 Greeting classmates
+name = input("Hello! What is your name?")
+age = int(input("How old are you?"))
+major = input("What is your major?")
+hobby = input("What is your favorite hobby?")
+weight = float(input("How much you weight?"))
+
+print()
+print("So you are a", major, "major and you like", hobby, ", that's pretty cool.")
+print()
+print("Nice meeting you", name, "!")
+print()
+print("Hope to see you again!")
+print()
+#print("%-10s Age: %3d %8.2f kg" % (name, age, weight))
