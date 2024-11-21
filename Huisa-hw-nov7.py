@@ -45,18 +45,26 @@ the program produces the output file
     
 Prompt the user for the input and output file names.
 
-# Prompt the user for input and output file names
-input_filename = input("Enter the input file name: ")
-output_filename = input("Enter the output file name: ")
+# Prompt the user for the input and output file names
+inputFileName = input("Enter the input file name: ")
+outputFileName = input("Enter the output file name: ")
 
-# Open the input file in read mode and the output file in write mode
-with open(input_filename, "r") as input_file, open(output_filename, "w") as output_file:
-    # Read each line from the input file
-    line_number = 1
-    for line in input_file:
-        # Write the line to the output file with a line number prefix
-        output_file.write(f"/* {line_number} */ {line}")
-        line_number += 1
+# Open the input file for reading and the output file for writing
+inFile = open(inputFileName, "r", encoding="utf-8")
+outFile = open(outputFileName, "w", encoding="utf-8")
+
+# Initialize the line number
+line_number = 1
+
+# Read each line from the input file and write it to the output file with line numbers
+for line in inFile:
+    # Write the line to the output file with a line number prefix
+    outFile.write(f"/* {line_number} */ {line}")
+    line_number += 1
+
+# Close both files
+inFile.close()
+outFile.close()
 
 print("Lines have been written to the output file with line numbers.")
 '''
@@ -66,36 +74,48 @@ print("Lines have been written to the output file with line numbers.")
 floating-point numbers. Prompt the user for the file name. 
 Print the average of each column.
 
-# Prompt the user for the file name
-filename = input("Enter the file name: ")
+# Prompt the user for input and output file names
+inputFileName = input("Enter the input file name: ")
+outputFileName = input("Enter the output file name: ")
 
 # Initialize variables to store the sums and counts for each column
 sum_column1 = 0.0
 sum_column2 = 0.0
 count = 0
 
-# Open the file and read each line
-with open(filename, "r") as file:
-    for line in file:
+try:
+    # Open the input file for reading and the output file for writing
+    inFile = open(inputFileName, "r", encoding="utf-8")
+    outFile = open(outputFileName, "w", encoding="utf-8")
+    
+    # Read each line in the input file
+    for line in inFile:
         # Split each line into two floating-point numbers
         values = line.split()
         if len(values) == 2:  # Ensure the line has exactly two columns
             num1 = float(values[0])
             num2 = float(values[1])
-
+            
             # Add the numbers to the respective column sums
             sum_column1 += num1
             sum_column2 += num2
             count += 1
 
-# Calculate the averages
-if count > 0:
-    average_column1 = sum_column1 / count
-    average_column2 = sum_column2 / count
-    print(f"Average of column 1: {average_column1:.2f}")
-    print(f"Average of column 2: {average_column2:.2f}")
-else:
-    print("No data to process in the file.")
+    # Calculate the averages and write to the output file
+    if count > 0:
+        average_column1 = sum_column1 / count
+        average_column2 = sum_column2 / count
+        outFile.write(f"Average of column 1: {average_column1:.2f}\n")
+        outFile.write(f"Average of column 2: {average_column2:.2f}\n")
+        print("Averages have been written to the output file.")
+    else:
+        outFile.write("No data to process in the file.\n")
+        print("No data to process in the file.")
+
+finally:
+    # Close both files
+    inFile.close()
+    outFile.close()
 '''
 
 '''
